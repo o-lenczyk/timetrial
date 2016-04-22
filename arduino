@@ -16,11 +16,12 @@ void displayResult()
   float s=elapsed/1000;
   Serial.print("Elapsed time: ");
   Serial.print(s,0);
+  start=0;
 }
 
 void loop()
 {
-  if (digitalRead(2)==HIGH)
+  if (digitalRead(2)==HIGH) && start=0 //this loop is triggered only once
   {
     start=millis();
     delay(200); // for debounce
@@ -31,5 +32,6 @@ void loop()
     finished=millis();
     delay(200); // for debounce
     displayResult();
+    start=finished;
   }
 }
